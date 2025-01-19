@@ -40,7 +40,8 @@ const ChatContainer = () => {
     <div className="flex-1 flex-col overflow-auto">
       <ChatHeader />
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 p-4 space-y-4" style={{minHeight:"60vh"}}>
+        {messages.length ===0 && <div className="flex-1"><MessageSkeleton/> <p className="text-center text-gray-700">No Messages. Starting messaging</p> </div>}
         {messages.map((message) => (
           <div
             key={message._id}

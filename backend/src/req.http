@@ -1,0 +1,30 @@
+###
+post http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "fullName":"John Doe",
+    "email":"john@email.com",
+    "password":"johndoe"
+}
+
+
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzhiOWViZmEwYjNiMTc2MzRmMmE2ODgiLCJpYXQiOjE3MzcyMDMzOTEsImV4cCI6MTczNzgwODE5MX0.B9uZ45IAqBqaiPTY9z7ArKP2ed3tiz79JXxZ3jaKsL8
+
+###
+post http://localhost:5000/api/auth/login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzhiOWViZmEwYjNiMTc2MzRmMmE2ODgiLCJpYXQiOjE3MzcyMDMzOTEsImV4cCI6MTczNzgwODE5MX0.B9uZ45IAqBqaiPTY9z7ArKP2ed3tiz79JXxZ3jaKsL8
+Content-Type: application/json
+
+{
+    "email":"john@email.com",
+    "password":"johndoe"
+}
+
+###
+post http://localhost:5000/api/auth/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzhiOWViZmEwYjNiMTc2MzRmMmE2ODgiLCJpYXQiOjE3MzcyMDMzOTEsImV4cCI6MTczNzgwODE5MX0.B9uZ45IAqBqaiPTY9z7ArKP2ed3tiz79JXxZ3jaKsL8
+
+###
+get http://localhost:5000/api/auth/check
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzhiOWViZmEwYjNiMTc2MzRmMmE2ODgiLCJpYXQiOjE3MzcyMTA1NjcsImV4cCI6MTczNzgxNTM2N30.krKRFDpMNCIZDbXIoKzIHS1mhsXRgsSBU0X9GhF2PoM

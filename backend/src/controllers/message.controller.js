@@ -32,7 +32,7 @@ export const getMessages = async (req,res)=>{
         console.log("Error in getMessages controller:", error.message);
         res.status(500).json({ message: "Internal Server Error"});
     }
-}
+};
 
 export const sendMessage = async(req,res)=>{
     try {
@@ -65,4 +65,15 @@ export const sendMessage = async(req,res)=>{
         console.log("Error in sendMessage controller: ", error.message);
         res.status(500).json({error:"Internal Server Error"});
     }
+};
+
+export const deleteMessage1 = async(req,res)=>{
+    const senderId = req.userId;
+    const messageId = req.params;
+    
+}
+
+export const deleteMessage2 = async(req,res)=>{
+    const senderId = req.userId;
+
 }

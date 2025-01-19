@@ -6,7 +6,10 @@ import { useAuthStore } from "./useAuthStore.js";
 export const useChatStore = create((set,get)=>({
     messages:[],
     users:[],
-    selectedUser: null,
+    selectedUser: localStorage.getItem("selectedUser")
+    ? JSON.parse(localStorage.getItem("selectedUser"))
+    : null,
+
     isUsersLoading:false,
     isMessagesLoading: false,
 
@@ -62,5 +65,8 @@ export const useChatStore = create((set,get)=>({
         socket.off("newMessage");
     },
 
-    setSelectedUser: (selectedUser )=> set({selectedUser}),
+    setSelectedUser: (selectedUser )=> {
+        set({selectedUser});
+        localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
+    },
 }))

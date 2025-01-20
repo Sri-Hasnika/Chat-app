@@ -32,11 +32,15 @@ const LoginPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
-              <div
-                className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
-              transition-colors"
-              >
-                <MessageSquare className="w-6 h-6 text-primary" />
+              <div className="flex justify-center gap-4 mb-4">
+                <div className="relative">
+                  <div
+                    className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center
+                  justify-center animate-bounce"
+                  >
+                    <MessageSquare className="w-8 h-8 text-primary " />
+                  </div>
+                </div>
               </div>
               <h1 className="text-2xl font-bold mt-2">Welcome Back</h1>
               <p className="text-base-content/60">Sign in to your account</p>

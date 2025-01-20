@@ -37,8 +37,15 @@ const SignUpPage = () => {
         <div className="w-full max-w-md space-y-8">
           {/* logo */}
           <div className="flex flex-col items-center gap-2 group">
-            <div className="size-12 rounded-xl bg-primary/10 flex itmes-center justify-center group-hover:bg-primary/20 transition-colors">
-              <MessageSquare className="size-8 my-auto text-primary "/>
+            <div className="flex justify-center gap-4 mt-10">
+              <div className="relative">
+                <div
+                  className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center
+                justify-center animate-bounce"
+                >
+                  <MessageSquare className="w-8 h-8 text-primary " />
+                </div>
+              </div>
             </div>
 
             <h1 className="text-2xl font-bold mt-2">Create Account</h1>

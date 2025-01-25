@@ -34,10 +34,7 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
-<<<<<<< HEAD
 app.use("/api/media", mediaRoutes);
-=======
->>>>>>> ed4c13e0cb2047af07a6c50ff63b052a5b41a767
 
 if(process.env.NODE_ENV == "production"){
     app.use(express.static(path.join(__dirname, "../frontend/dist")));

@@ -10,7 +10,10 @@ import { useThemeStore } from './store/useThemeStore.js';
 import {Loader} from "lucide-react";
 import { Navigate, Route, Routes } from 'react-router-dom'
 import {Toaster} from "react-hot-toast";
+<<<<<<< HEAD
 import MediaPage from './pages/MediaPage.jsx';
+=======
+>>>>>>> ed4c13e0cb2047af07a6c50ff63b052a5b41a767
 
 const App = () => {
   const {authUser, checkAuth, isCheckingAuth, onlineUsers} = useAuthStore();
@@ -38,7 +41,10 @@ const App = () => {
         <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
+<<<<<<< HEAD
         <Route path="/media" element={authUser ? <MediaPage /> : <Navigate to="/login" />} />
+=======
+>>>>>>> ed4c13e0cb2047af07a6c50ff63b052a5b41a767
       </Routes>
 
       <Toaster/>

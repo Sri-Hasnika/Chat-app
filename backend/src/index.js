@@ -7,7 +7,10 @@ import path from "path";
 
 import authRoutes from './routes/auth.route.js';
 import messageRoutes from './routes/message.route.js';
+<<<<<<< HEAD
 import mediaRoutes from './routes/media.route.js';
+=======
+>>>>>>> ed4c13e0cb2047af07a6c50ff63b052a5b41a767
 
 import {connectDB} from "./lib/db.js";
 import { app, server } from "./lib/socket.js";
@@ -31,7 +34,10 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+<<<<<<< HEAD
 app.use("/api/media", mediaRoutes);
+=======
+>>>>>>> ed4c13e0cb2047af07a6c50ff63b052a5b41a767
 
 if(process.env.NODE_ENV == "production"){
     app.use(express.static(path.join(__dirname, "../frontend/dist")));

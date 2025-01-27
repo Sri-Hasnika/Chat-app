@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Camera, Mail, User } from "lucide-react";
+import { Camera, Mail, PencilIcon, User } from "lucide-react";
 
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState(authUser?.fullName || "");
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -19,6 +21,13 @@ const ProfilePage = () => {
       setSelectedImg(base64Image);
       await updateProfile({ profilePic: base64Image });
     };
+  };
+
+  const handleNameSave = async () => {
+    if (nameInput.trim() !== authUser.fullName) {
+      await updateProfile({ fullName: nameInput.trim() });
+    }
+    setIsEditingName(false);
   };
 
   return (
@@ -71,7 +80,35 @@ const ProfilePage = () => {
                 <User className="w-4 h-4" />
                 Full Name
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.fullName}</p>
+              <div className="flex justify-between items-center">
+                {isEditingName ? (
+                  <input
+                    type="text"
+                    value={nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    className="px-4 py-2.5 bg-base-200 rounded-lg border w-4/6"
+                  />
+                ) : (
+                  <p className="px-4 py-2.5 bg-base-200 rounded-lg border w-4/6">
+                    {authUser?.fullName}
+                  </p>
+                )}
+                <div className="w-1/6 flex justify-end">
+                  {isEditingName ? (
+                    <button
+                      onClick={handleNameSave}
+                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg"
+                    >
+                      Save
+                    </button>
+                  ) : (
+                    <PencilIcon
+                      className="cursor-pointer mt-3"
+                      onClick={() => setIsEditingName(true)}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="space-y-1.5">
@@ -101,4 +138,5 @@ const ProfilePage = () => {
     </div>
   );
 };
+
 export default ProfilePage;

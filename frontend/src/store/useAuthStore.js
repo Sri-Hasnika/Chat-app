@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 
 const BASE_URL = import.meta.env.MODE==="development" ? "http://localhost:5000" : "/";
 
+
 export const useAuthStore = create((set,get)=>({
     authUser: null,
     isSigningUp:false,
@@ -13,6 +14,8 @@ export const useAuthStore = create((set,get)=>({
     isCheckingAuth: true,
     onlineUsers: [],
     socket:null,
+
+    
 
     checkAuth: async() =>{
         try {
@@ -63,6 +66,7 @@ export const useAuthStore = create((set,get)=>({
             await axiosInstance.post("/auth/logout");
             set({authUser:null});
             toast.success("Logged out successfully");
+            localStorage.removeItem("selectedUser");
 
             get().disconnectSocket();
         } catch (error) {

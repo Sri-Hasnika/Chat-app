@@ -5,6 +5,7 @@ import MessageInput from "./MessageInput";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
+import './ChatContainer.css'
 
 const ChatContainer = () => {
   const {
@@ -34,9 +35,9 @@ const ChatContainer = () => {
 
   if (isMessagesLoading) {
     return (
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full w-5/6">
         <ChatHeader />
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto p-4 space-y-1 spacescrollbar">
           <MessageSkeleton />
         </div>
         <MessageInput />
@@ -52,7 +53,7 @@ const ChatContainer = () => {
       </div>
 
       {/* Messages Section */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 spacescrollbar">
         {messages.length === 0 && (
           <div className="flex-col items-center justify-center h-full">
             <MessageSkeleton />
@@ -66,7 +67,8 @@ const ChatContainer = () => {
             key={message._id}
             className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
           >
-            <div className="chat-image avatar">
+            {
+              message.senderId !==  authUser._id && <div className="chat-image avatar">
               <div className="size-10 rounded-full border">
                 <img
                   src={
@@ -77,7 +79,8 @@ const ChatContainer = () => {
                   alt="profile pic"
                 />
               </div>
-            </div>
+            </div> 
+            }
             <div className="chat-header mb-1">
               <time className="text-xs opacity-50 ml-1">
                 {formatMessageTime(message.createdAt)}
@@ -85,11 +88,13 @@ const ChatContainer = () => {
             </div>
             <div className="chat-bubble flex flex-col">
               {message.image && (
-                <img
-                  src={message.image}
-                  alt="Attachment"
-                  className="sm:max-w-[200px] rounded-md mb-2"
-                />
+                <a href={message.image} target="_blank" rel="noopener noreferrer"> {/* helps in opening the image when a image is clicked */}
+                  <img
+                    src={message.image}
+                    alt="Attachment"
+                    className="sm:max-w-[200px] rounded-md mb-2"
+                  />
+                </a>
               )}
               {message.text && <p>{message.text}</p>}
             </div>

@@ -9,7 +9,7 @@ router.get("/:id", protectRoute, getMessages);
 
 router.post("/send/:id", protectRoute, sendMessage);
 
-// : for delete messages feature
+// for delete messages feature
 router.delete("/deleteMessage1/:id", protectRoute, deleteMessage1);
 router.delete("/deleteMessage2/:id", protectRoute, deleteMessage2);
 

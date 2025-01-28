@@ -6,7 +6,7 @@ import {io, getReceiverSocketId} from "../lib/socket.js";
 export const getUsersForSidebar = async(req,res)=>{
     try {
         const loggedInUserId= req.user._id;
-        const filteredUsers = await User.find({_id:{$ne:loggedInUserId}}).select("-password");
+        const filteredUsers = await User.find({_id:{$ne:loggedInUserId}}).select("-password"); // to get all info expect password of all users other than authUser.
 
         res.status(200).json(filteredUsers);
     } catch (error) {
@@ -52,13 +52,10 @@ export const sendMessage = async(req,res)=>{
             text,
             image:imageUrl,
         });
-
         await newMessage.save();
 
         const receiverSockeId = getReceiverSocketId(receiverId);
-        if(receiverSockeId){
-            io.to(receiverSockeId).emit("newMessage", newMessage);
-        }
+        if(receiverSockeId) io.to(receiverSockeId).emit("newMessage", newMessage);
 
         res.status(201).json(newMessage);
     } catch (error) {

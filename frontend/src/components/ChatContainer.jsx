@@ -8,14 +8,7 @@ import { formatMessageTime } from "../lib/utils";
 import './ChatContainer.css'
 
 const ChatContainer = () => {
-  const {
-    messages,
-    getMessages,
-    isMessagesLoading,
-    selectedUser,
-    subscribeToMessages,
-    unsubscribeToMessages,
-  } = useChatStore();
+  const {messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeToMessages, } = useChatStore();
 
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
@@ -24,12 +17,12 @@ const ChatContainer = () => {
     getMessages(selectedUser._id);
     subscribeToMessages();
 
-    return () => unsubscribeToMessages();
+    return () => unsubscribeToMessages(); // Cleanup: Unsubscribe from updates when the component unmounts or the selected user changes.
   }, [selectedUser._id, getMessages, unsubscribeToMessages, subscribeToMessages]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" }); // Smoothly scroll to the bottom of the message list.
     }
   }, [messages]);
 
@@ -38,7 +31,7 @@ const ChatContainer = () => {
       <div className="flex flex-col h-full w-5/6">
         <ChatHeader />
         <div className="flex-1 overflow-y-auto p-4 space-y-1 spacescrollbar">
-          <MessageSkeleton />
+          <MessageSkeleton /> {/*shows the loading state */}
         </div>
         <MessageInput />
       </div>

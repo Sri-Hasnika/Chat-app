@@ -1,11 +1,11 @@
 import '../ChatContainer.css';
 
 const MessageSkeleton = () => {
-    // Create an array of 6 items for skeleton messages
+    // Create an array of items for skeleton messages
     const skeletonMessages = Array(3).fill(null);
   
     return (
-      <div className="flex-1 overflow-y-auto  spacescrollbar">
+      <div className="flex-1 overflow-y-auto spacescrollbar">
         {skeletonMessages.map((_, idx) => (
           <div key={idx} className={`chat ${idx % 2 === 0 ? "chat-start" : "chat-end"}`}>
             <div className="chat-image avatar">

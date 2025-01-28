@@ -1,3 +1,5 @@
+// used for changing theme of the application
+
 export const THEMES = [
     "light",
     "dark",

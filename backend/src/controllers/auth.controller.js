@@ -16,7 +16,7 @@ export const signup = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    if (user) return res.status(400).json({ message: "Email already exists" });
+    if (user) return res.status(400).json({ message: "Email already exists" }); // checks for dupilcate email Ids
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -28,16 +28,11 @@ export const signup = async (req, res) => {
     });
 
     if (newUser) {
-      // generate jwt token here
+      // generating jwt token
       generateToken(newUser._id, res);
-      await newUser.save();
+      await newUser.save();// to save the 'newUser' into the MongoDB
 
-      res.status(201).json({
-        _id: newUser._id,
-        fullName: newUser.fullName,
-        email: newUser.email,
-        profilePic: newUser.profilePic,
-      });
+      res.status(201).json({_id: newUser._id, fullName: newUser.fullName, email: newUser.email, profilePic: newUser.profilePic, });
     } else {
       res.status(400).json({ message: "Invalid user data" });
     }
@@ -49,26 +44,18 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }); // checking if email is registered or not
 
-    if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
-    if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
+    const isPasswordCorrect = await bcrypt.compare(password, user.password); // verifying the entered password with the user's password
+    if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-    generateToken(user._id, res);
+    generateToken(user._id, res); //generating token for successfull login
+    res.status(200).json({_id: user._id, fullName: user.fullName, email: user.email, profilePic: user.profilePic, });
 
-    res.status(200).json({
-      _id: user._id,
-      fullName: user.fullName,
-      email: user.email,
-      profilePic: user.profilePic,
-    });
   } catch (error) {
     console.log("Error in login controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
@@ -77,8 +64,9 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.cookie("jwt", "", { maxAge: 0 });
+    res.cookie("jwt", "", { maxAge: 0 }); // we are replacing the token with empty string and letting it to expire in zero seconds( indirectly, we are deleting the token )
     res.status(200).json({ message: "Logged out successfully" });
+
   } catch (error) {
     console.log("Error in logout controller", error.message);
     res.status(500).json({ message: "Internal Server Error" });
@@ -87,12 +75,12 @@ export const logout = (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { profilePic, fullName } = req.body;
-    const userId = req.user._id;
+    const { profilePic, fullName } = req.body; //letting user can change the profile photo and fullname
+    const userId = req.user._id; //getting userId from req(which is attached in the protectRoute middleware)
     
     const updateFields = {};
     if (profilePic) {
-      const uploadResponse = await cloudinary.uploader.upload(profilePic);
+      const uploadResponse = await cloudinary.uploader.upload(profilePic); //using cloudinary to upload photo to get an cloud url
       updateFields.profilePic = uploadResponse.secure_url;
     }
     if (fullName) {
@@ -112,7 +100,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-export const checkAuth = (req, res) => {
+export const checkAuth = (req, res) => { //this is used only for loader
   try {
     res.status(200).json(req.user);
   } catch (error) {

@@ -22,6 +22,7 @@
 ✅ **Smooth Animations** – Enhanced UX with **Framer Motion** and **GSAP**  
 ✅ **Optimized Socket.io Connections** – Reduced latency by **40%**  
 ✅ **Deployed on Render** – Continuous deployment for seamless updates  
+✅ **Live Demo:** [Chat App](https://chat-app-3xgk.onrender.com)  
 
 ## 📌 Installation Guide
 
@@ -49,6 +50,7 @@ Clone the repository:
 - **Frontend:** Deployed on **Vercel / Netlify**
 - **Backend:** Deployed on **Render / Heroku**
 - **Database:** Hosted on **MongoDB Atlas**
+- **Live App:** [Chat App on Render](https://chat-app-3xgk.onrender.com)
 
 ## 📂 Folder Structure
 ```
@@ -69,11 +71,9 @@ real-time-chat/
 - **End-to-End Encryption for Enhanced Security**
 - **AI-Based Message Suggestions**
 
-
 ## 📧 Contact
 For inquiries, reach out at [srihasnika@gmail.com](mailto:srihasnika@gmail.com) or visit our [GitHub Repository](https://github.com/Sri-Hasnika/real-time-chat).
 
 ---
 💡 *Bringing Instant, Secure, and Animated Chat Experiences to Life!* 💬✨
-
 

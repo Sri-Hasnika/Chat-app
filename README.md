@@ -71,7 +71,7 @@ real-time-chat/
 
 
 ## 📧 Contact
-For inquiries, reach out at [your-srihasnika@gmail.com](mailto:srihasnika@gmail.com) or visit our [GitHub Repository](https://github.com/Sri-Hasnika/real-time-chat).
+For inquiries, reach out at [srihasnika@gmail.com](mailto:srihasnika@gmail.com) or visit our [GitHub Repository](https://github.com/Sri-Hasnika/real-time-chat).
 
 ---
 💡 *Bringing Instant, Secure, and Animated Chat Experiences to Life!* 💬✨
